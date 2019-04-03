@@ -1,0 +1,69 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.3.1                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    object      topoSetDict;
+}
+
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+actions
+(
+    // actuationDisk1
+
+    {
+        name    nozzleGas;
+        type    faceSet;
+        action  new;
+        source  boxToFace;
+        sourceInfo
+        {
+            box (0 0.0005715 -0.001)(0.01 0.0013335 0.001);
+//            box (0 0.0013335 -0.001)(0.01 0.0013335 0.001);
+        }
+    }
+
+    {
+        name    nozzleGas;
+        type    faceZoneSet;
+        action  new;
+        source  setToFaceZone;
+        sourceInfo
+        {
+            faceSet nozzleGas;
+        }
+    }
+/*
+    // actuationDisk2
+    {
+        name    actuationDisk2;
+        type    cellSet;
+        action  new;
+        source  boxToCell;
+        sourceInfo
+        {
+            box (581754 4785658 1065) (581754.4 4785668 1075);
+        }
+    }
+    {
+        name    actuationDisk2;
+        type    cellZoneSet;
+        action  new;
+        source  setToCellZone;
+        sourceInfo
+        {
+            set actuationDisk2;
+        }
+    }
+*/
+);
+
+// ************************************************************************* //
